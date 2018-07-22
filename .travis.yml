@@ -1,0 +1,18 @@
+language: ruby
+branches:
+  only:
+  - source
+rvm:
+- 2.3.4
+# This key will only work for titusfortner fork
+before_install:
+- openssl aes-256-cbc -K $encrypted_15cc9893e056_key -iv $encrypted_15cc9893e056_iv -in deploy_key.enc -out deploy_key -d
+before_script:
+- chmod +x ./deploy.sh
+script: bash ./deploy.sh
+exclude:
+- vendor
+sudo: false
+env:
+  global:
+  - COMMIT_AUTHOR_EMAIL: watir.team@gmail.com
